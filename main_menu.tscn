@@ -113,8 +113,8 @@ Press space for next player"
 horizontal_alignment = 1
 
 [connection signal="successPositionSig" from="pickPocketBar" to="selector" method="successPositionRecieved"]
-[connection signal="failSig" from="selector" to="pickPocketBar" method="failReset"]
 [connection signal="failSig" from="selector" to="failScreen" method="playerFail"]
+[connection signal="resetSig" from="selector" to="pickPocketBar" method="failReset"]
 [connection signal="resetSig" from="selector" to="failScreen" method="playerReset"]
 [connection signal="speedChange" from="selector" to="speedTracker" method="speedChange"]
 [connection signal="successSig" from="selector" to="pickPocketBar" method="successReset"]

@@ -45,17 +45,19 @@ func _input(_ev):
 				move = true
 			else:
 				print("Player failed at position "  + str(position.x))
-				speedChange.emit(1)
 				failSig.emit()
+				successPos.clear()
+				
 				move = false
 				running = false
 		else:
 			resetSig.emit()
+			speed = 1
+			speedChange.emit(1)
+			
 			await get_tree().create_timer(1).timeout
 			running = true 
 			move = true
-			successPos.clear()
-
 
 		
 			
