@@ -1,0 +1,120 @@
+[gd_scene load_steps=15 format=3 uid="uid://dw266gma3mjjn"]
+
+[ext_resource type="Script" uid="uid://dgt6rksplnmkn" path="res://pickPocketSelector.gd" id="1_85xd0"]
+[ext_resource type="Script" uid="uid://b73n6emuhbmum" path="res://pickPocketBar.gd" id="1_fu7sn"]
+[ext_resource type="Script" uid="uid://uwys6k3vgx3s" path="res://speedTracker.gd" id="2_7vrkn"]
+[ext_resource type="Script" uid="uid://bsrseo8uvrw7r" path="res://failScreen.gd" id="4_jix8l"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_q7vxk"]
+
+[sub_resource type="Gradient" id="Gradient_k0krc"]
+colors = PackedColorArray(0.427451, 0, 0.0156863, 1, 0.42905, 0, 0.0146128, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e4fhd"]
+gradient = SubResource("Gradient_k0krc")
+width = 281
+
+[sub_resource type="QuadMesh" id="QuadMesh_7vrkn"]
+
+[sub_resource type="Gradient" id="Gradient_7vrkn"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.283557, 0.499552, 0, 1, 0.282353, 0.498039, 0, 1, 0.427451, 0, 0.0156863, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fu7sn"]
+gradient = SubResource("Gradient_7vrkn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_eclor"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_06t4h"]
+
+[sub_resource type="Gradient" id="Gradient_fu7sn"]
+colors = PackedColorArray(1, 1, 1, 0.392157, 1, 1, 1, 0.392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jix8l"]
+gradient = SubResource("Gradient_fu7sn")
+
+[node name="pickpocket" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-408.0]
+
+[node name="pickPocketBar" type="Node2D" parent="."]
+script = ExtResource("1_fu7sn")
+
+[node name="pickPocketBar" type="MeshInstance2D" parent="pickPocketBar"]
+position = Vector2(-7.62939e-06, -7.15256e-07)
+scale = Vector2(512, 64)
+mesh = SubResource("QuadMesh_q7vxk")
+texture = SubResource("GradientTexture1D_e4fhd")
+
+[node name="success" type="Node2D" parent="pickPocketBar"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="pickPocketBar/success"]
+scale = Vector2(48, 64)
+mesh = SubResource("QuadMesh_7vrkn")
+texture = SubResource("GradientTexture1D_fu7sn")
+
+[node name="selector" type="Node2D" parent="."]
+script = ExtResource("1_85xd0")
+
+[node name="selector" type="MeshInstance2D" parent="selector"]
+position = Vector2(2.98023e-08, 2.98023e-08)
+scale = Vector2(32, 32)
+mesh = SubResource("QuadMesh_eclor")
+texture = SubResource("ImageTexture_06t4h")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="speedTracker" type="Label" parent="."]
+offset_left = -576.0
+offset_top = -320.0
+offset_right = -160.0
+offset_bottom = -256.0
+text = "Speed: 1"
+script = ExtResource("2_7vrkn")
+
+[node name="failScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -576.0
+offset_top = -328.0
+offset_right = -536.0
+offset_bottom = -288.0
+script = ExtResource("4_jix8l")
+
+[node name="glossThing" type="TextureRect" parent="failScreen"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 664.0
+texture = SubResource("GradientTexture1D_jix8l")
+
+[node name="fail" type="Label" parent="failScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 14.4
+anchor_top = 8.2
+anchor_right = 14.4
+anchor_bottom = 8.2
+offset_left = -168.0
+offset_top = -208.0
+offset_right = 168.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 200
+text = "Fail"
+horizontal_alignment = 1
+
+[node name="scoreCard" type="Label" parent="failScreen"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 384.0
+offset_right = 704.0
+offset_bottom = 448.0
+text = "Score: ??
+Press space for next player"
+horizontal_alignment = 1
+
+[connection signal="successPositionSig" from="pickPocketBar" to="selector" method="successPositionRecieved"]
+[connection signal="failSig" from="selector" to="pickPocketBar" method="failReset"]
+[connection signal="failSig" from="selector" to="failScreen" method="playerFail"]
+[connection signal="resetSig" from="selector" to="failScreen" method="playerReset"]
+[connection signal="speedChange" from="selector" to="speedTracker" method="speedChange"]
+[connection signal="successSig" from="selector" to="pickPocketBar" method="successReset"]
