@@ -5,7 +5,8 @@ signal successSig
 signal failSig
 signal resetSig
 
-var player = 1
+var players = 1
+var currentPlayer = 1
 var left = true
 var speed = 1
 var successPos = []
@@ -41,11 +42,18 @@ func _input(_ev):
 				speedChange.emit(speed)
 				move = false
 				successPos.clear()
-				await get_tree().create_timer(1).timeout
+				await get_tree().create_timer(0.5).timeout
 				successSig.emit()
+				await get_tree().create_timer(0.5).timeout
 				move = true
 			else:
 				print("Player failed at position "  + str(position.x))
+				print("Current player is:" +str(currentPlayer))
+				if currentPlayer != players:
+					currentPlayer += 1
+					print("New player is: " +str(currentPlayer))
+				elif currentPlayer == players: #end game logic
+					pass
 				failSig.emit()
 				successPos.clear()
 				
@@ -64,3 +72,7 @@ func _input(_ev):
 			
 func successPositionRecieved(_index: int, successPosition: int) -> void:
 	successPos.append(successPosition)
+
+
+func recievePlayerCount(playerCount: int) -> void:
+	players = playerCount

@@ -1,7 +1,7 @@
 extends Control
 
 var players = 0
-signal playerCount
+signal playerCount(players:int)
 
 func _ready() -> void:
 	pass
@@ -10,3 +10,4 @@ func _ready() -> void:
 func playerCountConfirmed() -> void:
 	visible = false
 	players = $playerCount.value
+	playerCount.emit(players)

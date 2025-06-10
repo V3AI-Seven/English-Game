@@ -121,6 +121,7 @@ offset_bottom = 40.0
 script = ExtResource("5_7jktm")
 
 [node name="glossThing" type="TextureRect" parent="playerSelect"]
+layout_mode = 0
 offset_left = -592.0
 offset_top = -327.0
 offset_right = 592.0
@@ -128,6 +129,7 @@ offset_bottom = 329.0
 texture = SubResource("GradientTexture1D_jix8l")
 
 [node name="playerCount" type="SpinBox" parent="playerSelect"]
+layout_mode = 0
 offset_left = -40.0
 offset_top = -16.0
 offset_right = 56.0
@@ -159,4 +161,5 @@ text = "Confirm"
 [connection signal="resetSig" from="selector" to="failScreen" method="playerReset"]
 [connection signal="speedChange" from="selector" to="speedTracker" method="speedChange"]
 [connection signal="successSig" from="selector" to="pickPocketBar" method="successReset"]
+[connection signal="playerCount" from="playerSelect" to="selector" method="recievePlayerCount"]
 [connection signal="pressed" from="playerSelect/playerConfirmButton" to="playerSelect" method="playerCountConfirmed"]
