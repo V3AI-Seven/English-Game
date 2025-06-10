@@ -70,7 +70,7 @@ offset_left = -576.0
 offset_top = -320.0
 offset_right = -160.0
 offset_bottom = -256.0
-text = "Speed: 1"
+text = "Score: 0.0"
 script = ExtResource("3_ryrav")
 
 [node name="failScreen" type="Control" parent="."]
@@ -158,6 +158,7 @@ text = "Confirm"
 [connection signal="successPositionSig" from="pickPocketBar" to="selector" method="successPositionRecieved"]
 [connection signal="failSig" from="selector" to="failScreen" method="playerFail"]
 [connection signal="resetSig" from="selector" to="pickPocketBar" method="failReset"]
+[connection signal="resetSig" from="selector" to="selector" method="reset"]
 [connection signal="resetSig" from="selector" to="failScreen" method="playerReset"]
 [connection signal="speedChange" from="selector" to="speedTracker" method="speedChange"]
 [connection signal="successSig" from="selector" to="pickPocketBar" method="successReset"]

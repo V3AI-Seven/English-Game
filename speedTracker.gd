@@ -1,4 +1,4 @@
 extends Label
 
 func speedChange(speed: float) -> void:
-	text = "Speed: " + str(speed)
+	text = "Score: " + str(speed)
