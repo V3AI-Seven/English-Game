@@ -11,6 +11,11 @@ config_version=5
 [application]
 
 config/name="English Game"
-run/main_scene="res://main_menu.tscn"
+run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Players="*res://players.gd"
+Score="*res://score.gd"

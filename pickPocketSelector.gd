@@ -5,6 +5,7 @@ signal successSig
 signal failSig
 signal resetSig
 
+var player = 1
 var left = true
 var speed = 1
 var successPos = []
