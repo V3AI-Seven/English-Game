@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://b804ytfcyrgdb"]
+
+[ext_resource type="Script" uid="uid://bj6mi4h7u8o1a" path="res://finishScreen.gd" id="1_bi7kb"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bi7kb")
+
+[node name="finish" type="Label" parent="."]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 32.0
+offset_right = 720.0
+offset_bottom = 169.0
+theme_override_font_sizes/font_size = 100
+text = "Finish"
+horizontal_alignment = 1
+
+[node name="scoreCard" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.014
+anchor_bottom = 0.035
+offset_left = 520.0
+offset_top = 176.0
+offset_right = 611.872
+offset_bottom = 212.32
+theme_override_font_sizes/font_size = 20
+text = "Player 1: 0
+Player 2: 0"
+horizontal_alignment = 1

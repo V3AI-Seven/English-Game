@@ -17,5 +17,5 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Players="*res://players.gd"
 Score="*res://score.gd"
+Players="*res://players.gd"

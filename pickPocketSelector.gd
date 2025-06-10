@@ -6,6 +6,7 @@ signal failSig
 signal resetSig
 
 var players = 1
+var score = 0
 var currentPlayer = 1
 var left = true
 var speed = 1
@@ -37,7 +38,8 @@ func _input(_ev):
 		if running == true:
 			if (position.x >= (successPos[0]-graceRange) && position.x < (successPos[0]+graceRange)) or (position.x >= (successPos[1]-graceRange) && position.x < (successPos[1]+graceRange)) or (position.x >= (successPos[2]-graceRange) && position.x < (successPos[2]+graceRange)):
 				speed += 0.75
-				print("Player succedded at position " + str(position.x)) 
+				print("Player succedded at position " + str(position.x))
+				score += 1 
 
 				speedChange.emit(speed)
 				move = false
@@ -48,6 +50,7 @@ func _input(_ev):
 				move = true
 			else:
 				print("Player failed at position "  + str(position.x))
+				print("Player failed with score " +str(score))
 				print("Current player is:" +str(currentPlayer))
 				if currentPlayer != players:
 					currentPlayer += 1
@@ -62,6 +65,7 @@ func _input(_ev):
 		else:
 			resetSig.emit()
 			speed = 1
+			score = 0
 			speedChange.emit(1)
 			
 			await get_tree().create_timer(1).timeout
