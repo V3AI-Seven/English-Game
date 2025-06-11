@@ -5,16 +5,17 @@ signal successSig
 signal failSig
 signal resetSig
 
+const graceRange = 30
+const speedIncrease = 0.75
+const startSpeed = 1.5
 var players = 1
 var score = 0
 var currentPlayer = 1
 var left = true
-var speed = 1
+var speed = startSpeed
 var successPos = []
 var move = true
 var running = true
-const graceRange = 30
-const speedIncrease = 0.75
 
 
 # Called when the node enters the scene tree for the first time.
@@ -69,7 +70,7 @@ func _input(_ev):
 				running = false
 		else:
 			resetSig.emit()
-			speed = 1
+			speed = startSpeed
 			score = 0
 			speedChange.emit(0)
 			
@@ -81,8 +82,6 @@ func _input(_ev):
 			
 func successPositionRecieved(_index: int, successPosition: int) -> void:
 	successPos.append(successPosition)
-
-
 
 func reset() -> void:
 	Score.scores.append(0)
