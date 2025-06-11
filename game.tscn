@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dw266gma3mjjn"]
+[gd_scene load_steps=16 format=3 uid="uid://dw266gma3mjjn"]
 
 [ext_resource type="Script" uid="uid://b73n6emuhbmum" path="res://pickPocketBar.gd" id="1_fc0e3"]
 [ext_resource type="Script" uid="uid://dgt6rksplnmkn" path="res://pickPocketSelector.gd" id="2_7jktm"]
+[ext_resource type="Texture2D" uid="uid://52j3bhxsrsl2" path="res://pngimg.com - triangle_PNG1.png" id="3_7jktm"]
 [ext_resource type="Script" uid="uid://uwys6k3vgx3s" path="res://speedTracker.gd" id="3_ryrav"]
 [ext_resource type="Script" uid="uid://bsrseo8uvrw7r" path="res://failScreen.gd" id="4_eow3j"]
 
@@ -26,7 +27,7 @@ gradient = SubResource("Gradient_7vrkn")
 
 [sub_resource type="QuadMesh" id="QuadMesh_eclor"]
 
-[sub_resource type="ImageTexture" id="ImageTexture_06t4h"]
+[sub_resource type="ImageTexture" id="ImageTexture_fc0e3"]
 
 [sub_resource type="Gradient" id="Gradient_fc0e3"]
 colors = PackedColorArray(1, 1, 1, 0.392157, 1, 1, 1, 0.392157)
@@ -57,10 +58,16 @@ texture = SubResource("GradientTexture1D_fu7sn")
 script = ExtResource("2_7jktm")
 
 [node name="selector" type="MeshInstance2D" parent="selector"]
+visible = false
 position = Vector2(0, 32)
 scale = Vector2(64, 64)
 mesh = SubResource("QuadMesh_eclor")
-texture = SubResource("ImageTexture_06t4h")
+texture = SubResource("ImageTexture_fc0e3")
+
+[node name="Pngimg_com-TrianglePng1" type="Sprite2D" parent="selector"]
+position = Vector2(0, 32)
+scale = Vector2(0.0106667, 0.0106667)
+texture = ExtResource("3_7jktm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

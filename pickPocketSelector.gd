@@ -37,6 +37,7 @@ func _process(_delta: float) -> void:
 func _input(_ev):
 	if Input.is_key_pressed(KEY_SPACE):    
 		if running == true:
+			await get_tree().create_timer(0.01).timeout
 			if (position.x >= (successPos[0]-graceRange) && position.x < (successPos[0]+graceRange)) or (position.x >= (successPos[1]-graceRange) && position.x < (successPos[1]+graceRange)) or (position.x >= (successPos[2]-graceRange) && position.x < (successPos[2]+graceRange)):
 				speed += 0.75
 				print("Player succedded at position " + str(position.x))
@@ -69,7 +70,7 @@ func _input(_ev):
 			resetSig.emit()
 			speed = 1
 			score = 0
-			speedChange.emit(1)
+			speedChange.emit(0)
 			
 			await get_tree().create_timer(1).timeout
 			running = true 
