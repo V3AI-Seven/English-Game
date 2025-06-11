@@ -19,6 +19,7 @@ const graceRange = 30
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Score.scores.append(0)
+	players = Players.playerCount
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -79,9 +80,6 @@ func _input(_ev):
 func successPositionRecieved(_index: int, successPosition: int) -> void:
 	successPos.append(successPosition)
 
-
-func recievePlayerCount(playerCount: int) -> void:
-	players = playerCount
 
 
 func reset() -> void:

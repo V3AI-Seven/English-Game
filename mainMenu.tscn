@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpibi7hn4bxfb"]
+
+[ext_resource type="Script" uid="uid://by5cp1jhx5eqw" path="res://playerSelect.gd" id="1_wut1r"]
+
+[sub_resource type="Gradient" id="Gradient_fu7sn"]
+colors = PackedColorArray(1, 1, 1, 0.392157, 1, 1, 1, 0.392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_83s16"]
+gradient = SubResource("Gradient_fu7sn")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="playerSelect" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 576.0
+offset_top = 320.0
+offset_right = 616.0
+offset_bottom = 360.0
+script = ExtResource("1_wut1r")
+
+[node name="glossThing" type="TextureRect" parent="playerSelect"]
+layout_mode = 0
+offset_left = -592.0
+offset_top = -327.0
+offset_right = 592.0
+offset_bottom = 329.0
+texture = SubResource("GradientTexture1D_83s16")
+
+[node name="playerCount" type="SpinBox" parent="playerSelect"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -16.0
+offset_right = 56.0
+offset_bottom = 15.0
+min_value = 1.0
+value = 1.0
+custom_arrow_step = 1.0
+
+[node name="Label" type="Label" parent="playerSelect"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = -56.0
+offset_right = 96.0
+offset_bottom = -32.0
+text = "Enter number of players"
+horizontal_alignment = 1
+
+[node name="playerConfirmButton" type="Button" parent="playerSelect"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 56.0
+text = "Confirm"
+
+[connection signal="pressed" from="playerSelect/playerConfirmButton" to="playerSelect" method="playerCountConfirmed"]
