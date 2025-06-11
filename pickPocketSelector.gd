@@ -59,7 +59,7 @@ func _input(_ev):
 				if currentPlayer != players:
 					currentPlayer += 1
 					print("New player is: " +str(currentPlayer))
-				elif currentPlayer == players: #end game logic
+				elif currentPlayer == players: 
 					get_tree().change_scene_to_file("res://finishScreen.tscn")
 				failSig.emit()
 				successPos.clear()

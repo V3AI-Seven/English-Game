@@ -68,6 +68,7 @@ texture = SubResource("ImageTexture_fc0e3")
 position = Vector2(0, 32)
 scale = Vector2(0.0106667, 0.0106667)
 texture = ExtResource("3_7jktm")
+offset = Vector2(200, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
