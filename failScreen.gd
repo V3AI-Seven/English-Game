@@ -4,7 +4,7 @@ var player = 0
 
 func _ready() -> void:
 	visible = false
-	var player = 0
+	player = 0
 
 
 func playerFail() -> void:
