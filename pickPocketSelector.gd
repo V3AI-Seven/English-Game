@@ -14,6 +14,7 @@ var successPos = []
 var move = true
 var running = true
 const graceRange = 30
+const speedIncrease = 0.75
 
 
 # Called when the node enters the scene tree for the first time.
@@ -39,7 +40,7 @@ func _input(_ev):
 		if running == true:
 			await get_tree().create_timer(0.01).timeout
 			if (position.x >= (successPos[0]-graceRange) && position.x < (successPos[0]+graceRange)) or (position.x >= (successPos[1]-graceRange) && position.x < (successPos[1]+graceRange)) or (position.x >= (successPos[2]-graceRange) && position.x < (successPos[2]+graceRange)):
-				speed += 0.75
+				speed += speedIncrease
 				print("Player succedded at position " + str(position.x))
 				score += 1
 				Score.scores[currentPlayer-1] += 1
