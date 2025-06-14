@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dw266gma3mjjn"]
+[gd_scene load_steps=15 format=3 uid="uid://dw266gma3mjjn"]
 
 [ext_resource type="Script" uid="uid://b73n6emuhbmum" path="res://pickPocketBar.gd" id="1_fc0e3"]
 [ext_resource type="Script" uid="uid://dgt6rksplnmkn" path="res://pickPocketSelector.gd" id="2_7jktm"]
+[ext_resource type="Script" uid="uid://dhqnselwcym6d" path="res://success.gd" id="2_eow3j"]
+[ext_resource type="Texture2D" uid="uid://c4h8518n5lyrn" path="res://moneyTextures/100bill.png" id="2_ryrav"]
 [ext_resource type="Texture2D" uid="uid://52j3bhxsrsl2" path="res://pngimg.com - triangle_PNG1.png" id="3_7jktm"]
 [ext_resource type="Script" uid="uid://uwys6k3vgx3s" path="res://speedTracker.gd" id="3_ryrav"]
 [ext_resource type="Script" uid="uid://bsrseo8uvrw7r" path="res://failScreen.gd" id="4_eow3j"]
@@ -14,16 +16,6 @@ colors = PackedColorArray(0.427451, 0, 0.0156863, 1, 0.42905, 0, 0.0146128, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_e4fhd"]
 gradient = SubResource("Gradient_k0krc")
 width = 281
-
-[sub_resource type="QuadMesh" id="QuadMesh_7vrkn"]
-
-[sub_resource type="Gradient" id="Gradient_7vrkn"]
-offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0.283557, 0.499552, 0, 1, 0.282353, 0.498039, 0, 1, 0.427451, 0, 0.0156863, 0)
-metadata/_snap_enabled = true
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_fu7sn"]
-gradient = SubResource("Gradient_7vrkn")
 
 [sub_resource type="QuadMesh" id="QuadMesh_eclor"]
 
@@ -48,11 +40,12 @@ mesh = SubResource("QuadMesh_q7vxk")
 texture = SubResource("GradientTexture1D_e4fhd")
 
 [node name="success" type="Node2D" parent="pickPocketBar"]
+script = ExtResource("2_eow3j")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="pickPocketBar/success"]
-scale = Vector2(48, 64)
-mesh = SubResource("QuadMesh_7vrkn")
-texture = SubResource("GradientTexture1D_fu7sn")
+[node name="moneyTexture" type="Sprite2D" parent="pickPocketBar/success"]
+position = Vector2(-1.52588e-05, -7.62939e-06)
+scale = Vector2(0.193989, 0.193989)
+texture = ExtResource("2_ryrav")
 
 [node name="selector" type="Node2D" parent="."]
 script = ExtResource("2_7jktm")

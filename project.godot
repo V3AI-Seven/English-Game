@@ -19,3 +19,7 @@ config/icon="res://icon.svg"
 
 Score="*res://score.gd"
 Players="*res://players.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"

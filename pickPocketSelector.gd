@@ -1,6 +1,6 @@
 extends Node2D
 
-signal speedChange(speed: float)
+signal speedChange(speed: int)
 signal successSig
 signal failSig
 signal resetSig
@@ -8,6 +8,7 @@ signal resetSig
 const graceRange = 30
 const speedIncrease = 0.75
 const startSpeed = 1.5
+
 var players = 1
 var score = 0
 var currentPlayer = 1
@@ -36,47 +37,48 @@ func _process(_delta: float) -> void:
 		else:
 			left = true
 			
-func _input(_ev):
-	if Input.is_key_pressed(KEY_SPACE):    
-		if running == true:
-			await get_tree().create_timer(0.01).timeout
-			if (position.x >= (successPos[0]-graceRange) && position.x < (successPos[0]+graceRange)) or (position.x >= (successPos[1]-graceRange) && position.x < (successPos[1]+graceRange)) or (position.x >= (successPos[2]-graceRange) && position.x < (successPos[2]+graceRange)):
-				speed += speedIncrease
-				print("Player succedded at position " + str(position.x))
-				score += 1
-				Score.scores[currentPlayer-1] += 1
-				
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_SPACE and not event.is_echo():
+			if running == true:
+				#await get_tree().create_timer(0.05).timeout
+				if move and (position.x >= (successPos[0]-graceRange) && position.x < (successPos[0]+graceRange)) or (position.x >= (successPos[1]-graceRange) && position.x < (successPos[1]+graceRange)) or (position.x >= (successPos[2]-graceRange) && position.x < (successPos[2]+graceRange)):
+					speed += speedIncrease
+					print("Player succedded at position " + str(position.x))
+					score += 1
+					Score.scores[currentPlayer-1] += 1
+					
 
-				speedChange.emit(score)
-				move = false
-				successPos.clear()
-				await get_tree().create_timer(0.5).timeout
-				successSig.emit()
-				await get_tree().create_timer(0.5).timeout
-				move = true
+					speedChange.emit(score)
+					move = false
+					successPos.clear()
+					await get_tree().create_timer(0.5).timeout
+					successSig.emit()
+					await get_tree().create_timer(0.5).timeout
+					move = true
+				elif move:
+					move = false
+					running = false
+					print("Player failed at position "  + str(position.x))
+					print("Player failed with score " +str(score))
+					print("Current player is:" +str(currentPlayer))
+					if currentPlayer != players:
+						currentPlayer += 1
+						print("New player is: " +str(currentPlayer))
+					elif currentPlayer == players: 
+						get_tree().change_scene_to_file("res://finishScreen.tscn")
+					failSig.emit()
+					successPos.clear()
+					
 			else:
-				print("Player failed at position "  + str(position.x))
-				print("Player failed with score " +str(score))
-				print("Current player is:" +str(currentPlayer))
-				if currentPlayer != players:
-					currentPlayer += 1
-					print("New player is: " +str(currentPlayer))
-				elif currentPlayer == players: 
-					get_tree().change_scene_to_file("res://finishScreen.tscn")
-				failSig.emit()
-				successPos.clear()
+				resetSig.emit()
+				speed = startSpeed
+				score = 0
+				speedChange.emit(0)
 				
-				move = false
-				running = false
-		else:
-			resetSig.emit()
-			speed = startSpeed
-			score = 0
-			speedChange.emit(0)
-			
-			await get_tree().create_timer(1).timeout
-			running = true 
-			move = true
+				await get_tree().create_timer(1).timeout
+				move = true
+				running = true 
 
 		
 			
