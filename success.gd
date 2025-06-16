@@ -9,5 +9,4 @@ var billTexturesArray := [
 ]
 
 func _ready() -> void:
-	
 	$moneyTexture.texture = billTexturesArray[randi() % billTexturesArray.size()]
