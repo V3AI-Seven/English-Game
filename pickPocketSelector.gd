@@ -5,7 +5,7 @@ signal successSig
 signal failSig
 signal resetSig
 
-const graceRange = 40
+const graceRange = 42
 const speedIncrease = 0.75
 const startSpeed = 1.5
 
