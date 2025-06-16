@@ -2,7 +2,7 @@ extends Node2D
 var successZonesPos = []
 var successZoneClones = []
 const successZones = 3
-const maxSeperationDist = 100
+const maxSeperationDist = 60
 signal successPositionSig(index:int, position:int)
 
 func reset():
