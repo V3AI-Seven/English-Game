@@ -70,11 +70,10 @@ offset_left = -576.0
 offset_top = -320.0
 offset_right = -160.0
 offset_bottom = -256.0
-text = "Score: 0.0"
+text = "Money: $0"
 script = ExtResource("3_ryrav")
 
 [node name="failScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -576.0
@@ -110,7 +109,7 @@ offset_left = 448.0
 offset_top = 384.0
 offset_right = 704.0
 offset_bottom = 448.0
-text = "Score: ??
+text = "Money: $??
 Press space for next player"
 horizontal_alignment = 1
 

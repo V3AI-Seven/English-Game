@@ -5,7 +5,7 @@ signal successSig
 signal failSig
 signal resetSig
 
-const graceRange = 30
+const graceRange = 40
 const speedIncrease = 0.75
 const startSpeed = 1.5
 
@@ -45,7 +45,7 @@ func _input(event):
 				if move and (position.x >= (successPos[0]-graceRange) && position.x < (successPos[0]+graceRange)) or (position.x >= (successPos[1]-graceRange) && position.x < (successPos[1]+graceRange)) or (position.x >= (successPos[2]-graceRange) && position.x < (successPos[2]+graceRange)):
 					speed += speedIncrease
 					print("Player succedded at position " + str(position.x))
-					score += 1
+					score += 10
 					Score.scores[currentPlayer-1] += 1
 					
 

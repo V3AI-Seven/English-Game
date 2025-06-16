@@ -5,7 +5,7 @@ var player = 1
 
 func _ready() -> void:
 	for val in Score.scores:
-		scoreText.append("Player " + str(player) + ": " + str(val))
+		scoreText.append("Player " + str(player) + ": $" + str(val*10))
 		player += 1
 	$scoreCard.text = "\n".join(scoreText)
 
