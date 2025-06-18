@@ -80,6 +80,7 @@ offset_bottom = 40.0
 script = ExtResource("2_xjkj1")
 
 [node name="multiplayer" type="Button" parent="modeSelector"]
+layout_mode = 0
 offset_left = 488.0
 offset_top = 323.0
 offset_right = 664.0
@@ -96,5 +97,5 @@ text = "Singleplayer"
 
 [connection signal="pressed" from="multiplayer/playerConfirmButton" to="multiplayer" method="playerCountConfirmed"]
 [connection signal="pressed" from="modeSelector/multiplayer" to="multiplayer" method="multiplayerSelect"]
-[connection signal="pressed" from="modeSelector/multiplayer" to="modeSelector" method="selectionMade"]
-[connection signal="pressed" from="modeSelector/singleplayer" to="modeSelector" method="selectionMade"]
+[connection signal="pressed" from="modeSelector/multiplayer" to="modeSelector" method="multiplayer"]
+[connection signal="pressed" from="modeSelector/singleplayer" to="modeSelector" method="singleplayer"]
