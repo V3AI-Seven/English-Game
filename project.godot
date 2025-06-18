@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Score="*res://globals/score.gd"
 PlayerInfo="*res://globals/playerInfo.gd"
+FileSysUtil="*res://globals/fileSysUtil.gd"
 
 [display]
 
