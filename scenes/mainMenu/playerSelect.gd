@@ -8,6 +8,10 @@ func _ready() -> void:
 
 func playerCountConfirmed() -> void:
 	players = $playerCount.value
-	Players.playerCount = players
-	get_tree().change_scene_to_file("res://game.tscn")
+	PlayerInfo.playerCount = players
+	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
 	
+
+
+func multiplayerSelect() -> void:
+	visible = true

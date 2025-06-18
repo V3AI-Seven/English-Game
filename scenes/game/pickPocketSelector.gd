@@ -22,7 +22,7 @@ var running = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Score.scores.append(0)
-	players = Players.playerCount
+	players = PlayerInfo.playerCount
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -66,7 +66,7 @@ func _input(event):
 						currentPlayer += 1
 						print("New player is: " +str(currentPlayer))
 					elif currentPlayer == players: 
-						get_tree().change_scene_to_file("res://finishScreen.tscn")
+						get_tree().change_scene_to_file("res://scenes/finishScreen/finishScreen.tscn")
 					failSig.emit()
 					successPos.clear()
 					

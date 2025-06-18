@@ -12,5 +12,5 @@ func _ready() -> void:
 
 func newGame() -> void:
 	Score.scores.clear()
-	Players.playerCount = 1
-	get_tree().change_scene_to_file("res://mainMenu.tscn")
+	PlayerInfo.playerCount = 1
+	get_tree().change_scene_to_file("res://scenes/mainMenu/mainMenu.tscn")

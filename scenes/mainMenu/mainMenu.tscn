@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpibi7hn4bxfb"]
+[gd_scene load_steps=5 format=3 uid="uid://cpibi7hn4bxfb"]
 
-[ext_resource type="Script" uid="uid://by5cp1jhx5eqw" path="res://scenes/mainMenu/playerSelect.gd" id="1_wut1r"]
+[ext_resource type="Script" uid="uid://by5cp1jhx5eqw" path="res://scenes/mainMenu/playerSelect.gd" id="1_vvnar"]
+[ext_resource type="Script" uid="uid://cxhwv4l5j62l" path="res://scenes/mainMenu/modeSelector.gd" id="2_xjkj1"]
 
 [sub_resource type="Gradient" id="Gradient_fu7sn"]
 colors = PackedColorArray(1, 1, 1, 0.392157, 1, 1, 1, 0.392157)
@@ -16,24 +17,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="playerSelect" type="Control" parent="."]
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 16.0
+offset_right = 990.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 100
+text = "Pocket Snatchers"
+horizontal_alignment = 1
+
+[node name="glossThing" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -7.0
+offset_right = 1168.0
+offset_bottom = 649.0
+texture = SubResource("GradientTexture1D_83s16")
+
+[node name="multiplayer" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 576.0
 offset_top = 320.0
 offset_right = 616.0
 offset_bottom = 360.0
-script = ExtResource("1_wut1r")
+script = ExtResource("1_vvnar")
 
-[node name="glossThing" type="TextureRect" parent="playerSelect"]
-layout_mode = 0
-offset_left = -592.0
-offset_top = -327.0
-offset_right = 592.0
-offset_bottom = 329.0
-texture = SubResource("GradientTexture1D_83s16")
-
-[node name="playerCount" type="SpinBox" parent="playerSelect"]
+[node name="playerCount" type="SpinBox" parent="multiplayer"]
 layout_mode = 0
 offset_left = -40.0
 offset_top = -16.0
@@ -44,7 +56,7 @@ max_value = 8.0
 value = 2.0
 custom_arrow_step = 1.0
 
-[node name="instructions" type="Label" parent="playerSelect"]
+[node name="instructions" type="Label" parent="multiplayer"]
 layout_mode = 0
 offset_left = -96.0
 offset_top = -56.0
@@ -53,7 +65,7 @@ offset_bottom = -32.0
 text = "Enter number of players"
 horizontal_alignment = 1
 
-[node name="playerConfirmButton" type="Button" parent="playerSelect"]
+[node name="playerConfirmButton" type="Button" parent="multiplayer"]
 layout_mode = 0
 offset_left = -40.0
 offset_top = 24.0
@@ -61,14 +73,28 @@ offset_right = 40.0
 offset_bottom = 56.0
 text = "Confirm"
 
-[node name="Title" type="Label" parent="playerSelect"]
-layout_mode = 0
-offset_left = -416.0
-offset_top = -304.0
-offset_right = 414.0
-offset_bottom = -167.0
-theme_override_font_sizes/font_size = 100
-text = "Pocket Snatchers"
-horizontal_alignment = 1
+[node name="modeSelector" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_xjkj1")
 
-[connection signal="pressed" from="playerSelect/playerConfirmButton" to="playerSelect" method="playerCountConfirmed"]
+[node name="multiplayer" type="Button" parent="modeSelector"]
+offset_left = 488.0
+offset_top = 323.0
+offset_right = 664.0
+offset_bottom = 371.0
+text = "Multiplayer"
+
+[node name="singleplayer" type="Button" parent="modeSelector"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 267.0
+offset_right = 664.0
+offset_bottom = 315.0
+text = "Singleplayer"
+
+[connection signal="pressed" from="multiplayer/playerConfirmButton" to="multiplayer" method="playerCountConfirmed"]
+[connection signal="pressed" from="modeSelector/multiplayer" to="multiplayer" method="multiplayerSelect"]
+[connection signal="pressed" from="modeSelector/multiplayer" to="modeSelector" method="selectionMade"]
+[connection signal="pressed" from="modeSelector/singleplayer" to="modeSelector" method="selectionMade"]
