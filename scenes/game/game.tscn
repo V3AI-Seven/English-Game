@@ -1,12 +1,12 @@
 [gd_scene load_steps=15 format=3 uid="uid://dw266gma3mjjn"]
 
-[ext_resource type="Script" uid="uid://b73n6emuhbmum" path="res://pickPocketBar.gd" id="1_fc0e3"]
-[ext_resource type="Script" uid="uid://dgt6rksplnmkn" path="res://pickPocketSelector.gd" id="2_7jktm"]
-[ext_resource type="Script" uid="uid://dhqnselwcym6d" path="res://success.gd" id="2_eow3j"]
-[ext_resource type="Texture2D" uid="uid://c4h8518n5lyrn" path="res://moneyTextures/100bill.png" id="2_ryrav"]
-[ext_resource type="Texture2D" uid="uid://52j3bhxsrsl2" path="res://pngimg.com - triangle_PNG1.png" id="3_7jktm"]
-[ext_resource type="Script" uid="uid://uwys6k3vgx3s" path="res://speedTracker.gd" id="3_ryrav"]
-[ext_resource type="Script" uid="uid://bsrseo8uvrw7r" path="res://failScreen.gd" id="4_eow3j"]
+[ext_resource type="Script" uid="uid://b73n6emuhbmum" path="res://scenes/game/pickPocketBar.gd" id="1_bdhmt"]
+[ext_resource type="Script" uid="uid://dhqnselwcym6d" path="res://scenes/game/success.gd" id="2_87uf6"]
+[ext_resource type="Texture2D" uid="uid://c4h8518n5lyrn" path="res://moneyTextures/100bill.png" id="3_2a8rs"]
+[ext_resource type="Script" uid="uid://dgt6rksplnmkn" path="res://scenes/game/pickPocketSelector.gd" id="4_4j704"]
+[ext_resource type="Texture2D" uid="uid://52j3bhxsrsl2" path="res://scenes/game/pngimg.com - triangle_PNG1.png" id="5_kp23o"]
+[ext_resource type="Script" uid="uid://uwys6k3vgx3s" path="res://scenes/game/speedTracker.gd" id="6_5jirj"]
+[ext_resource type="Script" uid="uid://bsrseo8uvrw7r" path="res://scenes/game/failScreen.gd" id="7_vaxfo"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_q7vxk"]
 
@@ -31,7 +31,7 @@ gradient = SubResource("Gradient_fc0e3")
 metadata/_edit_horizontal_guides_ = [-408.0, -336.0]
 
 [node name="pickPocketBar" type="Node2D" parent="."]
-script = ExtResource("1_fc0e3")
+script = ExtResource("1_bdhmt")
 
 [node name="pickPocketBar" type="MeshInstance2D" parent="pickPocketBar"]
 position = Vector2(-7.62939e-06, -7.15256e-07)
@@ -40,15 +40,15 @@ mesh = SubResource("QuadMesh_q7vxk")
 texture = SubResource("GradientTexture1D_e4fhd")
 
 [node name="success" type="Node2D" parent="pickPocketBar"]
-script = ExtResource("2_eow3j")
+script = ExtResource("2_87uf6")
 
 [node name="moneyTexture" type="Sprite2D" parent="pickPocketBar/success"]
 position = Vector2(-1.52588e-05, -7.62939e-06)
 scale = Vector2(0.193989, 0.193989)
-texture = ExtResource("2_ryrav")
+texture = ExtResource("3_2a8rs")
 
 [node name="selector" type="Node2D" parent="."]
-script = ExtResource("2_7jktm")
+script = ExtResource("4_4j704")
 
 [node name="selector" type="MeshInstance2D" parent="selector"]
 visible = false
@@ -60,7 +60,7 @@ texture = SubResource("ImageTexture_fc0e3")
 [node name="Pngimg_com-TrianglePng1" type="Sprite2D" parent="selector"]
 position = Vector2(0, 32)
 scale = Vector2(0.0106667, 0.0106667)
-texture = ExtResource("3_7jktm")
+texture = ExtResource("5_kp23o")
 offset = Vector2(200, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -71,16 +71,17 @@ offset_top = -320.0
 offset_right = -160.0
 offset_bottom = -256.0
 text = "Money: $0"
-script = ExtResource("3_ryrav")
+script = ExtResource("6_5jirj")
 
 [node name="failScreen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -576.0
 offset_top = -328.0
 offset_right = -536.0
 offset_bottom = -288.0
-script = ExtResource("4_eow3j")
+script = ExtResource("7_vaxfo")
 
 [node name="glossThing" type="TextureRect" parent="failScreen"]
 layout_mode = 0

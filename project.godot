@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Score="*res://score.gd"
-Players="*res://players.gd"
+Score="*res://globals/score.gd"
+Players="*res://globals/players.gd"
 
 [display]
 
