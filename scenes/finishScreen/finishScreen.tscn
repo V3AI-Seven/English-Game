@@ -51,6 +51,7 @@ theme_override_font_sizes/font_size = 50
 text = "New Game"
 
 [node name="highScore" type="Label" parent="multiplayerFinish"]
+layout_mode = 0
 offset_left = 264.0
 offset_top = 88.0
 offset_right = 904.0
