@@ -4,6 +4,7 @@ signal speedChange(speed: int)
 signal successSig
 signal failSig
 signal resetSig
+signal difficulty
 
 const graceRange = 42
 const speedIncrease = 0.75
@@ -21,6 +22,7 @@ var running = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	Score.scores.append(0)
 	players = PlayerInfo.playerCount
 
@@ -40,7 +42,7 @@ func _process(_delta: float) -> void:
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_SPACE and not event.is_echo():
-			if running == true:
+			if running:
 				#await get_tree().create_timer(0.05).timeout
 				if move and (position.x >= (successPos[0]-graceRange) && position.x < (successPos[0]+graceRange)) or (position.x >= (successPos[1]-graceRange) && position.x < (successPos[1]+graceRange)) or (position.x >= (successPos[2]-graceRange) && position.x < (successPos[2]+graceRange)):
 					speed += speedIncrease
