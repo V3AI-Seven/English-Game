@@ -7,17 +7,27 @@ signal resetSig
 signal difficulty
 
 const graceRange = 42
-const speedIncrease = 0.75
 const startSpeed = 1.5
 
-var players = 1
-var score = 0
+const easySpeedIncrease = 0.75
+const easyMoneyIncrease = 1
+const mediumSpeedIncrease = 1.5
+const mediumMoneyIncrease = 1.5
+const hardSpeedIncrease = 2.25
+const hardMoneyIncrease = 2
+
 var currentPlayer = 1
+var players = 1
+
+var running = true
 var left = true
 var speed = startSpeed
-var successPos = []
 var move = true
-var running = true
+var speedIncrease = 0.75
+
+var score = 0
+var successPos = []
+var difficultyChosenVar = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,7 +38,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if move:
+
+	if move and difficultyChosenVar:
 		if left:
 			position.x += speed
 		elif not left:
@@ -42,15 +53,34 @@ func _process(_delta: float) -> void:
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_SPACE and not event.is_echo():
-			if running:
+			if running and difficultyChosenVar:
+				match PlayerInfo.difficulty:
+					0:
+						speedIncrease = easySpeedIncrease
+					1:
+						speedIncrease = mediumSpeedIncrease
+					2:
+						speedIncrease = hardSpeedIncrease
 				#await get_tree().create_timer(0.05).timeout
 				if move and (position.x >= (successPos[0]-graceRange) && position.x < (successPos[0]+graceRange)) or (position.x >= (successPos[1]-graceRange) && position.x < (successPos[1]+graceRange)) or (position.x >= (successPos[2]-graceRange) && position.x < (successPos[2]+graceRange)):
+					#speed stuff
 					speed += speedIncrease
 					print("Player succedded at position " + str(position.x))
-					score += 10
-					Score.scores[currentPlayer-1] += 1
+					print("New speed: " +str(speed))
 					
-
+					#scoring
+					match PlayerInfo.difficulty:
+						0:
+							score += easyMoneyIncrease*10
+							Score.scores[currentPlayer-1] += easyMoneyIncrease
+						1:
+							score += mediumMoneyIncrease*10
+							Score.scores[currentPlayer-1] += mediumMoneyIncrease
+						2:
+							score += hardMoneyIncrease*10
+							Score.scores[currentPlayer-1] += hardMoneyIncrease
+					
+					#more speed stuff
 					speedChange.emit(score)
 					move = false
 					successPos.clear()
@@ -70,6 +100,8 @@ func _input(event):
 					elif currentPlayer == players: 
 						get_tree().change_scene_to_file("res://scenes/finishScreen/finishScreen.tscn")
 					failSig.emit()
+					
+					difficultyChosenVar = false
 					successPos.clear()
 					
 			else:
@@ -77,7 +109,7 @@ func _input(event):
 				speed = startSpeed
 				score = 0
 				speedChange.emit(0)
-				
+				difficulty.emit()
 				await get_tree().create_timer(1).timeout
 				move = true
 				running = true 
@@ -89,3 +121,6 @@ func successPositionRecieved(_index: int, successPosition: int) -> void:
 
 func reset() -> void:
 	Score.scores.append(0)
+
+func difficultyChosen() -> void:
+	difficultyChosenVar = true

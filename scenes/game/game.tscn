@@ -173,6 +173,7 @@ text = "Hard"
 [connection signal="resetSig" from="selector" to="failScreen" method="playerReset"]
 [connection signal="speedChange" from="selector" to="speedTracker" method="speedChange"]
 [connection signal="successSig" from="selector" to="pickPocketBar" method="successReset"]
+[connection signal="difficultyChosen" from="difficultyScreen" to="selector" method="difficultyChosen"]
 [connection signal="pressed" from="difficultyScreen/buttons/easy" to="difficultyScreen" method="easy"]
 [connection signal="pressed" from="difficultyScreen/buttons/medium" to="difficultyScreen" method="medium"]
 [connection signal="pressed" from="difficultyScreen/buttons/hard" to="difficultyScreen" method="hard"]
