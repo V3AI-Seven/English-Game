@@ -1,12 +1,14 @@
 extends Control
 
+signal scoreUpdate
+
 var scoreText = []
 var player = 1
 var newHigh = false
 
 func _ready() -> void:
 	var highScoreFile = FileAccess.open("user://score.dat", FileAccess.WRITE)
-	var newHigh = false
+	newHigh = false
 	$multiplayerFinish.visible = false
 	$singleplayerFinish.visible = false
 	if PlayerInfo.isModeMultiplayer:
@@ -16,18 +18,23 @@ func _ready() -> void:
 			if Score.scores[player-1] > Score.highScore:
 				Score.highScore = Score.scores[player-1]
 				newHigh = true
+				scoreUpdate.emit()
 			player += 1
 		$multiplayerFinish/scoreCard.text = "\n".join(scoreText)
 		$multiplayerFinish/highScore.text = "High Score: $" + str(Score.highScore*10)
 		if newHigh:
 			highScoreFile.store_var(Score.highScore)
+			highScoreFile.flush()
 	elif not PlayerInfo.isModeMultiplayer:
 		if Score.scores[0] > Score.highScore:
 			Score.highScore = Score.scores[0]
 			highScoreFile.store_var(Score.highScore)
+			highScoreFile.flush()
 		$singleplayerFinish.visible = true
 		$singleplayerFinish/scoreCard.text = "Money: $" +str(Score.scores[0]*10)
 		$singleplayerFinish/highScore.text = "High Score: $" + str(Score.highScore*10)
+	
+	highScoreFile.close()
 		
 
 

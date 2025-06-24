@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://dw266gma3mjjn"]
+[gd_scene load_steps=14 format=3 uid="uid://dw266gma3mjjn"]
 
-[ext_resource type="Script" uid="uid://b73n6emuhbmum" path="res://scenes/game/pickPocketBar.gd" id="1_bdhmt"]
-[ext_resource type="Script" uid="uid://dhqnselwcym6d" path="res://scenes/game/success.gd" id="2_87uf6"]
+[ext_resource type="Script" uid="uid://b73n6emuhbmum" path="res://scenes/game/mainGameScripts/pickPocketBar.gd" id="1_bdhmt"]
+[ext_resource type="Script" uid="uid://dhqnselwcym6d" path="res://scenes/game/mainGameScripts/success.gd" id="2_87uf6"]
 [ext_resource type="Texture2D" uid="uid://c4h8518n5lyrn" path="res://moneyTextures/100bill.png" id="3_2a8rs"]
-[ext_resource type="Script" uid="uid://dgt6rksplnmkn" path="res://scenes/game/pickPocketSelector.gd" id="4_4j704"]
+[ext_resource type="Script" uid="uid://dgt6rksplnmkn" path="res://scenes/game/mainGameScripts/pickPocketSelector.gd" id="4_4j704"]
 [ext_resource type="Texture2D" uid="uid://52j3bhxsrsl2" path="res://scenes/game/pngimg.com - triangle_PNG1.png" id="5_kp23o"]
-[ext_resource type="Script" uid="uid://uwys6k3vgx3s" path="res://scenes/game/speedTracker.gd" id="6_5jirj"]
-[ext_resource type="Script" uid="uid://bsrseo8uvrw7r" path="res://scenes/game/failScreen.gd" id="7_vaxfo"]
+[ext_resource type="Script" uid="uid://uwys6k3vgx3s" path="res://scenes/game/mainGameScripts/speedTracker.gd" id="6_5jirj"]
+[ext_resource type="Script" uid="uid://bsrseo8uvrw7r" path="res://scenes/game/otherGameScripts/failScreen.gd" id="7_vaxfo"]
+[ext_resource type="Script" uid="uid://lgsufbjn7dex" path="res://scenes/game/otherGameScripts/difficultyScreen.gd" id="8_87uf6"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_q7vxk"]
 
@@ -16,10 +17,6 @@ colors = PackedColorArray(0.427451, 0, 0.0156863, 1, 0.42905, 0, 0.0146128, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_e4fhd"]
 gradient = SubResource("Gradient_k0krc")
 width = 281
-
-[sub_resource type="QuadMesh" id="QuadMesh_eclor"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_fc0e3"]
 
 [sub_resource type="Gradient" id="Gradient_fc0e3"]
 colors = PackedColorArray(1, 1, 1, 0.392157, 1, 1, 1, 0.392157)
@@ -50,20 +47,13 @@ texture = ExtResource("3_2a8rs")
 [node name="selector" type="Node2D" parent="."]
 script = ExtResource("4_4j704")
 
-[node name="selector" type="MeshInstance2D" parent="selector"]
-visible = false
-position = Vector2(0, 32)
-scale = Vector2(64, 64)
-mesh = SubResource("QuadMesh_eclor")
-texture = SubResource("ImageTexture_fc0e3")
-
-[node name="Pngimg_com-TrianglePng1" type="Sprite2D" parent="selector"]
+[node name="selectorTexture" type="Sprite2D" parent="selector"]
 position = Vector2(0, 32)
 scale = Vector2(0.0106667, 0.0106667)
 texture = ExtResource("5_kp23o")
 offset = Vector2(200, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="gameCam" type="Camera2D" parent="."]
 
 [node name="speedTracker" type="Label" parent="."]
 offset_left = -576.0
@@ -114,10 +104,76 @@ text = "Money: $??
 Press space for next player"
 horizontal_alignment = 1
 
+[node name="difficultyScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 24.0
+script = ExtResource("8_87uf6")
+
+[node name="glossThing" type="TextureRect" parent="difficultyScreen"]
+layout_mode = 0
+offset_left = -560.0
+offset_top = -320.0
+offset_right = 592.0
+offset_bottom = 344.0
+texture = SubResource("GradientTexture1D_jix8l")
+
+[node name="selectLabel" type="Label" parent="difficultyScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = -6.2
+anchor_right = 0.4
+anchor_bottom = -6.2
+offset_left = -264.0
+offset_top = -48.0
+offset_right = 264.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 70
+text = "Select Difficulty"
+horizontal_alignment = 1
+
+[node name="buttons" type="Control" parent="difficultyScreen"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="easy" type="Button" parent="difficultyScreen/buttons"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -144.0
+offset_right = 72.0
+offset_bottom = -112.0
+text = "Easy"
+
+[node name="medium" type="Button" parent="difficultyScreen/buttons"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -104.0
+offset_right = 72.0
+offset_bottom = -72.0
+text = "Medium"
+
+[node name="hard" type="Button" parent="difficultyScreen/buttons"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -64.0
+offset_right = 72.0
+offset_bottom = -32.0
+text = "Hard"
+
 [connection signal="successPositionSig" from="pickPocketBar" to="selector" method="successPositionRecieved"]
+[connection signal="difficulty" from="selector" to="difficultyScreen" method="showDifficulty"]
 [connection signal="failSig" from="selector" to="failScreen" method="playerFail"]
 [connection signal="resetSig" from="selector" to="pickPocketBar" method="failReset"]
 [connection signal="resetSig" from="selector" to="selector" method="reset"]
 [connection signal="resetSig" from="selector" to="failScreen" method="playerReset"]
 [connection signal="speedChange" from="selector" to="speedTracker" method="speedChange"]
 [connection signal="successSig" from="selector" to="pickPocketBar" method="successReset"]
+[connection signal="difficultyChosen" from="difficultyScreen" to="selector" method="difficultyChosen"]
+[connection signal="pressed" from="difficultyScreen/buttons/easy" to="difficultyScreen" method="easy"]
+[connection signal="pressed" from="difficultyScreen/buttons/medium" to="difficultyScreen" method="medium"]
+[connection signal="pressed" from="difficultyScreen/buttons/hard" to="difficultyScreen" method="hard"]

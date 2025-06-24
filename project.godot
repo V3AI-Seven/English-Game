@@ -24,3 +24,7 @@ FileSysUtil="*res://globals/fileSysUtil.gd"
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
