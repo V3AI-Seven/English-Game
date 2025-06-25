@@ -1,4 +1,4 @@
-name: Export Godot Game
+name: Export and Release Build
 on: 
   push:
 
