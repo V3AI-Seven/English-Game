@@ -61,7 +61,6 @@ text = "High Score: "
 horizontal_alignment = 1
 
 [node name="singleplayerFinish" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -76,12 +75,20 @@ theme_override_font_sizes/font_size = 100
 text = "Finish"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="singleplayerFinish"]
+[node name="exit" type="Button" parent="singleplayerFinish"]
+offset_left = 408.0
+offset_top = 537.0
+offset_right = 744.0
+offset_bottom = 641.0
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+
+[node name="newGame" type="Button" parent="singleplayerFinish"]
 layout_mode = 0
-offset_left = 400.0
-offset_top = 520.0
-offset_right = 752.0
-offset_bottom = 640.0
+offset_left = 408.0
+offset_top = 420.0
+offset_right = 744.0
+offset_bottom = 524.0
 theme_override_font_sizes/font_size = 50
 text = "New Game"
 
@@ -91,9 +98,9 @@ anchors_preset = -1
 anchor_right = 0.014
 anchor_bottom = 0.035
 offset_left = 424.0
-offset_top = 264.0
+offset_top = 212.0
 offset_right = 711.44
-offset_bottom = 340.6
+offset_bottom = 288.6
 theme_override_font_sizes/font_size = 57
 text = "Money: $0"
 horizontal_alignment = 1
@@ -101,12 +108,13 @@ horizontal_alignment = 1
 [node name="highScore" type="Label" parent="singleplayerFinish"]
 layout_mode = 0
 offset_left = 256.0
-offset_top = 331.0
+offset_top = 279.0
 offset_right = 896.0
-offset_bottom = 435.0
+offset_bottom = 357.0
 theme_override_font_sizes/font_size = 57
 text = "High Score: "
 horizontal_alignment = 1
 
 [connection signal="pressed" from="multiplayerFinish/Button" to="." method="newGame"]
-[connection signal="pressed" from="singleplayerFinish/Button" to="." method="newGame"]
+[connection signal="pressed" from="singleplayerFinish/exit" to="." method="exitGame"]
+[connection signal="pressed" from="singleplayerFinish/newGame" to="." method="newGame"]

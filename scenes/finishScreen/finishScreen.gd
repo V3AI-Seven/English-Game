@@ -36,9 +36,15 @@ func _ready() -> void:
 	
 	highScoreFile.close()
 		
-
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventKey and event.keycode == KEY_SPACE and not event.is_echo():
+		#newGame()
 
 func newGame() -> void:
 	Score.scores.clear()
 	PlayerInfo.playerCount = 1
 	get_tree().change_scene_to_file("res://scenes/mainMenu/mainMenu.tscn")
+
+
+func exitGame() -> void:
+	pass # Replace with function body.
