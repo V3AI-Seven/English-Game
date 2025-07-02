@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpibi7hn4bxfb"]
+[gd_scene load_steps=6 format=3 uid="uid://cpibi7hn4bxfb"]
 
 [ext_resource type="Script" uid="uid://by5cp1jhx5eqw" path="res://scenes/mainMenu/playerSelect.gd" id="1_vvnar"]
+[ext_resource type="Script" uid="uid://0bqex7jgxjfn" path="res://scenes/mainMenu/onlineMultiplayer.gd" id="2_6q8wo"]
 [ext_resource type="Script" uid="uid://cxhwv4l5j62l" path="res://scenes/mainMenu/modeSelector.gd" id="2_xjkj1"]
 
 [sub_resource type="Gradient" id="Gradient_fu7sn"]
@@ -36,7 +37,6 @@ text = "Pocket Snatchers"
 horizontal_alignment = 1
 
 [node name="multiplayer" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 576.0
@@ -46,11 +46,13 @@ offset_bottom = 360.0
 script = ExtResource("1_vvnar")
 
 [node name="onlineChoice" type="Control" parent="multiplayer"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="local" type="Button" parent="multiplayer/onlineChoice"]
+layout_mode = 0
 offset_left = -88.0
 offset_top = -40.0
 offset_right = 88.0
@@ -58,6 +60,7 @@ offset_bottom = 8.0
 text = "Local"
 
 [node name="online" type="Button" parent="multiplayer/onlineChoice"]
+layout_mode = 0
 offset_left = -88.0
 offset_top = 16.0
 offset_right = 88.0
@@ -99,7 +102,54 @@ offset_right = 40.0
 offset_bottom = 56.0
 text = "Confirm"
 
+[node name="online" type="Control" parent="multiplayer"]
+anchors_preset = 0
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+script = ExtResource("2_6q8wo")
+
+[node name="host" type="Button" parent="multiplayer/online"]
+layout_mode = 0
+offset_left = -88.0
+offset_top = 72.0
+offset_right = 88.0
+offset_bottom = 120.0
+text = "Connect"
+
+[node name="connect" type="Button" parent="multiplayer/online"]
+layout_mode = 0
+offset_left = -88.0
+offset_top = -40.0
+offset_right = 88.0
+offset_bottom = 8.0
+text = "Host"
+
+[node name="ipAddress" type="LineEdit" parent="multiplayer/online"]
+layout_mode = 0
+offset_left = -88.0
+offset_top = 16.0
+offset_right = 88.0
+offset_bottom = 64.0
+placeholder_text = "Enter IP Address"
+
+[node name="port" type="LineEdit" parent="multiplayer/online/ipAddress"]
+visible = false
+offset_left = 184.0
+offset_right = 253.0
+offset_bottom = 48.0
+placeholder_text = "Port"
+
+[node name="portVisibility" type="CheckButton" parent="multiplayer/online"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 308.0
+offset_right = 572.0
+offset_bottom = 339.0
+text = "Advanced Mode"
+
 [node name="modeSelector" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -123,6 +173,7 @@ text = "Singleplayer"
 
 [connection signal="pressed" from="multiplayer/onlineChoice/local" to="multiplayer" method="localMultiplayer"]
 [connection signal="pressed" from="multiplayer/local/playerConfirmButton" to="multiplayer" method="playerCountConfirmed"]
+[connection signal="toggled" from="multiplayer/online/portVisibility" to="multiplayer/online" method="portVisibility"]
 [connection signal="pressed" from="modeSelector/multiplayer" to="multiplayer" method="multiplayerSelect"]
 [connection signal="pressed" from="modeSelector/multiplayer" to="modeSelector" method="multiplayer"]
 [connection signal="pressed" from="modeSelector/singleplayer" to="modeSelector" method="singleplayer"]

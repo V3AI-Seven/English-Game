@@ -76,6 +76,7 @@ text = "Finish"
 horizontal_alignment = 1
 
 [node name="exit" type="Button" parent="singleplayerFinish"]
+layout_mode = 0
 offset_left = 408.0
 offset_top = 537.0
 offset_right = 744.0
