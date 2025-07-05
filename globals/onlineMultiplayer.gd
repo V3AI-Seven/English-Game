@@ -15,13 +15,13 @@ func _ready():
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
-func portVisibility(toggled_on: bool) -> void: #Toggles the visibility of the port selector, based on the switch
-	if toggled_on:
-		$ipAddress/port.visible = true
-	elif !toggled_on:
-		$ipAddress/port.visible = false
+
 
 func _on_player_connected() -> void:
+	if multiplayer.is_server():
+		player = multiplayer.get_remote_sender_id()
+	elif !multiplayer.is_server():
+		pass
 	pass
 
 func _on_player_disconnected() -> void:
