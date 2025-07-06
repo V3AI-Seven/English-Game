@@ -12,6 +12,9 @@ func playerCountConfirmed() -> void:
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
 
 func multiplayerSelect() -> void:
+	$online.visible = false
+	$local.visible = false
+	$onlineChoice.visible = true
 	visible = true
 
 

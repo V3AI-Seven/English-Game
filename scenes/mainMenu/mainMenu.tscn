@@ -37,7 +37,6 @@ text = "Pocket Snatchers"
 horizontal_alignment = 1
 
 [node name="multiplayer" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 576.0
@@ -47,6 +46,7 @@ offset_bottom = 347.0
 script = ExtResource("1_vvnar")
 
 [node name="onlineChoice" type="Control" parent="multiplayer"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -149,7 +149,16 @@ offset_right = 572.0
 offset_bottom = 339.0
 text = "Advanced Mode"
 
+[node name="back" type="Button" parent="multiplayer/online"]
+layout_mode = 0
+offset_left = -568.0
+offset_top = 305.0
+offset_right = -432.0
+offset_bottom = 352.0
+text = "Back"
+
 [node name="modeSelector" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -177,6 +186,7 @@ text = "Singleplayer"
 [connection signal="pressed" from="multiplayer/online/host" to="multiplayer/online" method="hostSelected"]
 [connection signal="pressed" from="multiplayer/online/connect" to="multiplayer/online" method="connectSelected"]
 [connection signal="toggled" from="multiplayer/online/portVisibility" to="multiplayer/online" method="portVisibility"]
+[connection signal="pressed" from="multiplayer/online/back" to="multiplayer" method="multiplayerSelect"]
 [connection signal="pressed" from="modeSelector/multiplayer" to="multiplayer" method="multiplayerSelect"]
 [connection signal="pressed" from="modeSelector/multiplayer" to="modeSelector" method="multiplayer"]
 [connection signal="pressed" from="modeSelector/singleplayer" to="modeSelector" method="singleplayer"]

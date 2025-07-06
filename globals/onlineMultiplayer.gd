@@ -111,6 +111,8 @@ func _on_player_connected(_id) -> void:
 func _on_player_disconnected(_id) -> void:
 	if multiplayer.is_server():
 		player = null
+		multiplayer.multiplayer_peer.close()
+		multiplayer.multiplayer_peer = null
 		print("Player disconnected")
 		get_tree().change_scene_to_file("res://scenes/mainMenu/mainMenu.tscn")
 		GlobalFunctions.popup({

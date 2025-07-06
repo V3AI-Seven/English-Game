@@ -1,8 +1,17 @@
 extends Control
 signal difficultyChosen
 
+func _ready() -> void:
+	if OnlineMultiplayer.isMultiplayer:
+		if multiplayer.is_server():
+			PlayerInfo.selectingDifficulty = true
+			visible = true
+		else:
+			PlayerInfo.selectingDifficulty = true
+			visible = false
 
 func showDifficulty() -> void:
+	PlayerInfo.selectingDifficulty = true
 	visible = true
 
 func easy() -> void:

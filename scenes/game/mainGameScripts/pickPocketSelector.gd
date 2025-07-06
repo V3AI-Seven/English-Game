@@ -61,7 +61,7 @@ func _input(event):
 						speedIncrease = mediumSpeedIncrease
 					2:
 						speedIncrease = hardSpeedIncrease
-				#await get_tree().create_timer(0.05).timeout
+						
 				if move and (position.x >= (successPos[0]-graceRange) && position.x < (successPos[0]+graceRange)) or (position.x >= (successPos[1]-graceRange) && position.x < (successPos[1]+graceRange)) or (position.x >= (successPos[2]-graceRange) && position.x < (successPos[2]+graceRange)):
 					#speed stuff
 					speed += speedIncrease
@@ -104,7 +104,7 @@ func _input(event):
 					difficultyChosenVar = false
 					successPos.clear()
 					
-			else:
+			elif !PlayerInfo.selectingDifficulty:
 				resetSig.emit()
 				speed = startSpeed
 				score = 0
@@ -123,4 +123,10 @@ func reset() -> void:
 	Score.scores.append(0)
 
 func difficultyChosen() -> void:
+	if OnlineMultiplayer.isMultiplayer and multiplayer.is_server():
+		rpc("setDifficulty", PlayerInfo.difficulty)
 	difficultyChosenVar = true
+
+@rpc("authority","call_local","reliable")
+func setDifficulty(difficultyNum) -> void:
+	PlayerInfo.difficulty = difficultyNum
