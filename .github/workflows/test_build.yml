@@ -1,23 +1,23 @@
-name: Export Godot Game
+name: Test Build Godot Game
 on: 
   push:
 
 jobs:
   # job id, can be anything
-  export_game:
+  test_build_game:
     # Always use ubuntu-latest for this action
     runs-on: ubuntu-latest
     # Add permission for release creation. Can be made narrower according to your needs
     permissions: write-all
     # Job name, can be anything
-    name: Export Game
+    name: Test Build Game
     steps:
       # Always include the checkout step so that 
       # your project is available for Godot to export
     - name: Checkout
       uses: actions/checkout@v4
   
-    - name: Export Game
+    - name: Test Build Game
       id: export
       # Use latest version (see releases for all versions)
       uses: firebelley/godot-export@v6.0.0
@@ -30,9 +30,4 @@ jobs:
 
       # This release action has worked well for me. However, you can most likely use any release action of your choosing.
       # https://github.com/ncipollo/release-action
-    - name: Create Release
-      uses: softprops/action-gh-release@v2
-      if: github.ref_type == 'tag'
-      with:
-        name: Release ${{ github.ref_name }}
-        generate_release_notes: true
+
