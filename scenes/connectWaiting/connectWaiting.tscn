@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://c73cdlk5hihgv"]
+
+[ext_resource type="Script" uid="uid://c4a4co6o7cwly" path="res://scenes/connectWaiting/waitingScreen.gd" id="1_3fytc"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3fytc")
+
+[node name="waiting" type="Label" parent="."]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 246.0
+offset_right = 1018.0
+offset_bottom = 315.0
+theme_override_font_sizes/font_size = 50
+text = "Waiting for other player to connect..."
+horizontal_alignment = 1
+
+[node name="exit" type="Label" parent="."]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 328.0
+offset_right = 840.0
+offset_bottom = 496.0
+theme_override_font_sizes/font_size = 30
+text = "Press escape to exit"
+horizontal_alignment = 1
