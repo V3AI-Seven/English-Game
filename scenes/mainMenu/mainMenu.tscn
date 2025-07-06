@@ -10,7 +10,7 @@ colors = PackedColorArray(1, 1, 1, 0.392157, 1, 1, 1, 0.392157)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_83s16"]
 gradient = SubResource("Gradient_fu7sn")
 
-[node name="Control" type="Control"]
+[node name="Game" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,9 +21,9 @@ grow_vertical = 2
 [node name="glossThing" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = -16.0
-offset_top = -7.0
+offset_top = -6.0
 offset_right = 1168.0
-offset_bottom = 649.0
+offset_bottom = 650.0
 texture = SubResource("GradientTexture1D_83s16")
 
 [node name="Title" type="Label" parent="."]
@@ -41,9 +41,9 @@ visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 576.0
-offset_top = 320.0
+offset_top = 307.0
 offset_right = 616.0
-offset_bottom = 360.0
+offset_bottom = 347.0
 script = ExtResource("1_vvnar")
 
 [node name="onlineChoice" type="Control" parent="multiplayer"]
@@ -103,7 +103,6 @@ offset_bottom = 56.0
 text = "Confirm"
 
 [node name="online" type="Control" parent="multiplayer"]
-visible = false
 anchors_preset = 0
 offset_top = -20.0
 offset_right = 40.0
@@ -113,25 +112,25 @@ script = ExtResource("2_6q8wo")
 [node name="host" type="Button" parent="multiplayer/online"]
 layout_mode = 0
 offset_left = -88.0
-offset_top = 72.0
+offset_top = -39.0
 offset_right = 88.0
-offset_bottom = 120.0
-text = "Connect"
+offset_bottom = 9.0
+text = "Host"
 
 [node name="connect" type="Button" parent="multiplayer/online"]
 layout_mode = 0
 offset_left = -88.0
-offset_top = -40.0
+offset_top = 73.0
 offset_right = 88.0
-offset_bottom = 8.0
-text = "Host"
+offset_bottom = 121.0
+text = "Connect"
 
 [node name="ipAddress" type="LineEdit" parent="multiplayer/online"]
 layout_mode = 0
 offset_left = -88.0
-offset_top = 16.0
+offset_top = 17.0
 offset_right = 88.0
-offset_bottom = 64.0
+offset_bottom = 65.0
 placeholder_text = "Enter IP Address"
 
 [node name="port" type="LineEdit" parent="multiplayer/online/ipAddress"]

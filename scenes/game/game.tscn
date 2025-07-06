@@ -24,7 +24,7 @@ colors = PackedColorArray(1, 1, 1, 0.392157, 1, 1, 1, 0.392157)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_jix8l"]
 gradient = SubResource("Gradient_fc0e3")
 
-[node name="pickpocket" type="Node2D"]
+[node name="Game" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-408.0, -336.0]
 
 [node name="pickPocketBar" type="Node2D" parent="."]

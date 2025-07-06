@@ -1,6 +1,7 @@
 extends Control
 
-
+func _ready() -> void:
+	visible = true
 
 func multiplayer() -> void:
 	PlayerInfo.isModeMultiplayer = true

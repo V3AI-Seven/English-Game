@@ -3,7 +3,7 @@ extends Control
 var players = 0
 
 func _ready() -> void:
-	pass
+	visible = false
 
 
 func playerCountConfirmed() -> void:
