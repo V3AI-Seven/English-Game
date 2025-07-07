@@ -5,6 +5,7 @@ signal successSig
 signal failSig
 signal resetSig
 signal difficulty
+signal onlineOtherPlayerFinished
 
 const graceRange = 42
 const startSpeed = 1.5
@@ -104,12 +105,18 @@ func _input(event):
 						if OnlineMultiplayer.isMultiplayer:
 							if !multiplayer.is_server():
 								rpc("clientSendScore",score)
+								if Score.scores[1] == null:
+									$waiting.visible = true
+									await onlineOtherPlayerFinished
+									rpc("clientSendScore",score)
+									$waiting.visible = false
 							elif multiplayer.is_server():
 								rpc("serverSendScore",score)
-							$waiting.visible = true
-							while Score.scores[1] == null:
-								pass
-							$waiting.visible = false
+								if Score.scores[1] == null:
+									$waiting.visible = true
+									await onlineOtherPlayerFinished
+									rpc("serverSendScore",score)
+									$waiting.visible = false
 						get_tree().change_scene_to_file("res://scenes/finishScreen/finishScreen.tscn")
 					failSig.emit()
 					
@@ -150,9 +157,11 @@ func setDifficulty(difficultyNum) -> void:
 @rpc("any_peer","call_remote","reliable")
 func serverSendScore(sentScore) -> void: #Function is called on the server with data provided by the client
 	if !multiplayer.is_server():
-		Score.scores[1] = sentScore
-
+		onlineOtherPlayerFinished.emit()
+		Score.scores.append(sentScore)
+		
 @rpc("any_peer","call_remote","reliable") #Function is called on the client with data provided by the server
 func clientSendScore(sentScore) -> void:
 	if multiplayer.is_server():
-		Score.scores[1] = sentScore
+		onlineOtherPlayerFinished.emit()
+		Score.scores.append(sentScore)

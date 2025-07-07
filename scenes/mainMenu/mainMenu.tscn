@@ -70,6 +70,7 @@ text = "Online
 "
 
 [node name="back" type="Button" parent="multiplayer/onlineChoice"]
+layout_mode = 0
 offset_left = -568.0
 offset_top = 285.0
 offset_right = -432.0
@@ -111,6 +112,7 @@ offset_bottom = 56.0
 text = "Confirm"
 
 [node name="back" type="Button" parent="multiplayer/local"]
+layout_mode = 0
 offset_left = -568.0
 offset_top = 285.0
 offset_right = -432.0

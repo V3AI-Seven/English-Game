@@ -74,6 +74,8 @@ func joinGame(ip = null, port = null): #Tries to join a server at the provided i
 	connectionPort = port
 	connectionIP = ip
 	
+	get_tree().change_scene_to_file("res://scenes/connectWaiting/connectWaiting.tscn")
+	
 	#Connecting to server
 	var error = multiplayer_peer.create_client(ip, int(port))
 	if error:
@@ -85,6 +87,7 @@ func joinGame(ip = null, port = null): #Tries to join a server at the provided i
 		return error
 	multiplayer.multiplayer_peer = multiplayer_peer
 	isMultiplayer = true
+	
 
 func multiDisconnect() -> void:
 	if isMultiplayer:
@@ -92,6 +95,7 @@ func multiDisconnect() -> void:
 		multiplayer.multiplayer_peer = null
 		isMultiplayer = false
 	else:
+		printerr("Tried to disconnect from server/client when multiplayer not running!")
 		GlobalFunctions.popup({
 			"name":"Cannot disconnect",
 			"content":"Cannot disconnect from server if not connected/running"

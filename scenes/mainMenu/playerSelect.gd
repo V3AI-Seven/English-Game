@@ -16,6 +16,7 @@ func multiplayerSelect() -> void:
 	$local.visible = false
 	$onlineChoice.visible = true
 	visible = true
+	PlayerInfo.isModeMultiplayer = true
 
 
 func localMultiplayer() -> void:
@@ -25,7 +26,7 @@ func localMultiplayer() -> void:
 
 
 func onlineMultiplayer() -> void:
-	PlayerInfo.isModeMultiplayer = false
+	PlayerInfo.isModeMultiplayer = true
 	$onlineChoice.visible = false
 	$online.visible = true
 
