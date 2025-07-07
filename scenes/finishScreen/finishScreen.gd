@@ -47,4 +47,4 @@ func newGame() -> void:
 
 
 func exitGame() -> void:
-	pass # Replace with function body.
+	get_tree().quit()

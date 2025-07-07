@@ -37,6 +37,7 @@ text = "Pocket Snatchers"
 horizontal_alignment = 1
 
 [node name="multiplayer" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 576.0
@@ -67,6 +68,13 @@ offset_right = 88.0
 offset_bottom = 64.0
 text = "Online
 "
+
+[node name="back" type="Button" parent="multiplayer/onlineChoice"]
+offset_left = -568.0
+offset_top = 285.0
+offset_right = -432.0
+offset_bottom = 332.0
+text = "Back"
 
 [node name="local" type="Control" parent="multiplayer"]
 visible = false
@@ -102,7 +110,15 @@ offset_right = 40.0
 offset_bottom = 56.0
 text = "Confirm"
 
+[node name="back" type="Button" parent="multiplayer/local"]
+offset_left = -568.0
+offset_top = 285.0
+offset_right = -432.0
+offset_bottom = 332.0
+text = "Back"
+
 [node name="online" type="Control" parent="multiplayer"]
+visible = false
 anchors_preset = 0
 offset_top = -20.0
 offset_right = 40.0
@@ -158,7 +174,6 @@ offset_bottom = 352.0
 text = "Back"
 
 [node name="modeSelector" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -182,7 +197,10 @@ text = "Singleplayer"
 
 [connection signal="pressed" from="multiplayer/onlineChoice/local" to="multiplayer" method="localMultiplayer"]
 [connection signal="pressed" from="multiplayer/onlineChoice/online" to="multiplayer" method="onlineMultiplayer"]
+[connection signal="pressed" from="multiplayer/onlineChoice/back" to="multiplayer" method="backModeSelector"]
+[connection signal="pressed" from="multiplayer/onlineChoice/back" to="modeSelector" method="backModeSelector"]
 [connection signal="pressed" from="multiplayer/local/playerConfirmButton" to="multiplayer" method="playerCountConfirmed"]
+[connection signal="pressed" from="multiplayer/local/back" to="multiplayer" method="multiplayerSelect"]
 [connection signal="pressed" from="multiplayer/online/host" to="multiplayer/online" method="hostSelected"]
 [connection signal="pressed" from="multiplayer/online/connect" to="multiplayer/online" method="connectSelected"]
 [connection signal="toggled" from="multiplayer/online/portVisibility" to="multiplayer/online" method="portVisibility"]

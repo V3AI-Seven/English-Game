@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 const MAX_CONNECTIONS = 2
 
@@ -147,6 +147,8 @@ func _on_server_disconnected() -> void:
 		printerr("The API says that you lost connection to the server, but also that you are the server!")
 		pass
 	elif !multiplayer.is_server():
+		get_tree().change_scene_to_file("res://scenes/mainMenu/mainMenu.tscn")
+		multiplayer.multiplayer_peer.close()
 		multiplayer.multiplayer_peer = null
 		GlobalFunctions.popup({
 			"name":"Lost Connection",

@@ -53,6 +53,16 @@ scale = Vector2(0.0106667, 0.0106667)
 texture = ExtResource("5_kp23o")
 offset = Vector2(200, 0)
 
+[node name="waiting" type="Label" parent="selector"]
+visible = false
+offset_left = -248.0
+offset_top = 128.0
+offset_right = 248.0
+offset_bottom = 170.0
+theme_override_font_sizes/font_size = 30
+text = "Waiting for other player to finish"
+horizontal_alignment = 1
+
 [node name="gameCam" type="Camera2D" parent="."]
 
 [node name="speedTracker" type="Label" parent="."]
@@ -64,7 +74,6 @@ text = "Money: $0"
 script = ExtResource("6_5jirj")
 
 [node name="failScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -576.0
