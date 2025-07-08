@@ -4,6 +4,13 @@ on:
     tags:
       - 'v*.*.*' # Trigger on version tags, e.g., v1.0.0
   workflow_dispatch: # Allows manual triggering of the workflow
+      inputs:
+        # You can define inputs here if you want to pass parameters when manually triggering the workflow
+        # For example, you could allow specifying a version number or a custom message
+        version:
+          description: 'Version number for the release'
+          required: true
+
 
 jobs:
   # job id, can be anything
@@ -35,5 +42,5 @@ jobs:
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
-        name: Release ${{ github.ref_name }}
+        name: Release ${{ github.event.inputs.version }}
         generate_release_notes: true
