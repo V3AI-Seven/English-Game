@@ -1,6 +1,7 @@
 extends Control
 
-
+func _ready() -> void:
+	visible = true
 
 func multiplayer() -> void:
 	PlayerInfo.isModeMultiplayer = true
@@ -12,3 +13,6 @@ func singleplayer() -> void:
 	visible = false
 	PlayerInfo.playerCount = 1
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
+	
+func backModeSelector() -> void:
+	visible = true
