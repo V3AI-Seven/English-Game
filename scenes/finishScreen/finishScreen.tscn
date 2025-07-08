@@ -39,14 +39,14 @@ theme_override_font_sizes/font_size = 30
 text = "Error"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="multiplayerFinish"]
+[node name="mainMenu" type="Button" parent="multiplayerFinish"]
 layout_mode = 0
 offset_left = 400.0
 offset_top = 520.0
 offset_right = 752.0
 offset_bottom = 640.0
 theme_override_font_sizes/font_size = 50
-text = "New Game"
+text = "Main Menu"
 
 [node name="highScore" type="Label" parent="multiplayerFinish"]
 layout_mode = 0
@@ -55,8 +55,17 @@ offset_top = 88.0
 offset_right = 904.0
 offset_bottom = 192.0
 theme_override_font_sizes/font_size = 57
-text = "High Score: "
+text = "High Score: Error"
 horizontal_alignment = 1
+
+[node name="playAgain" type="Button" parent="multiplayerFinish"]
+visible = false
+offset_left = 400.0
+offset_top = 392.0
+offset_right = 752.0
+offset_bottom = 512.0
+theme_override_font_sizes/font_size = 50
+text = "Play Again"
 
 [node name="singleplayerFinish" type="Control" parent="."]
 visible = false
@@ -115,6 +124,6 @@ theme_override_font_sizes/font_size = 57
 text = "High Score: "
 horizontal_alignment = 1
 
-[connection signal="pressed" from="multiplayerFinish/Button" to="." method="newGame"]
+[connection signal="pressed" from="multiplayerFinish/mainMenu" to="." method="newGame"]
 [connection signal="pressed" from="singleplayerFinish/exit" to="." method="exitGame"]
 [connection signal="pressed" from="singleplayerFinish/newGame" to="." method="newGame"]

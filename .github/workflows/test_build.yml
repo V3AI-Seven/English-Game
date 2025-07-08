@@ -2,6 +2,7 @@ name: Test Build Godot Game
 on: 
   push:
 
+
 jobs:
   # job id, can be anything
   test_build_game:

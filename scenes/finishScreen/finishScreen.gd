@@ -12,6 +12,7 @@ func _ready() -> void:
 	$multiplayerFinish.visible = false
 	$singleplayerFinish.visible = false
 	if OnlineMultiplayer.isMultiplayer:
+		$multiplayerFinish/playAgain.visible = true
 		Score.scores.remove_at(2)
 		Score.scores.remove_at(3)
 		Score.scores.remove_at(4)
@@ -52,3 +53,10 @@ func newGame() -> void:
 
 func exitGame() -> void:
 	get_tree().quit()
+	
+func playAgain() ->void:
+	Score.scores.clear()
+	Score.scores.append(0)
+	Score.scores.append(null)
+	PlayerInfo.playerCount = 1
+	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
