@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfdfvfq2emwts"]
+
+[ext_resource type="Script" uid="uid://5h72ugkqj033" path="res://scenes/serverInfoPopup/serverInfoPopup.gd" id="1_5kotg"]
+
+[node name="Window" type="Window"]
+position = Vector2i(0, 36)
+size = Vector2i(384, 100)
+popup_window = true
+script = ExtResource("1_5kotg")
+
+[node name="text" type="Label" parent="."]
+offset_right = 384.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 20
+
+[connection signal="close_requested" from="." to="." method="close"]

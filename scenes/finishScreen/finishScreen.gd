@@ -11,6 +11,11 @@ func _ready() -> void:
 	newHigh = false
 	$multiplayerFinish.visible = false
 	$singleplayerFinish.visible = false
+	if OnlineMultiplayer.isMultiplayer:
+		$multiplayerFinish/playAgain.visible = true
+		Score.scores.remove_at(2)
+		Score.scores.remove_at(3)
+		Score.scores.remove_at(4)
 	if PlayerInfo.isModeMultiplayer:
 		$multiplayerFinish.visible = true
 		for val in Score.scores:
@@ -36,9 +41,22 @@ func _ready() -> void:
 	
 	highScoreFile.close()
 		
-
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventKey and event.keycode == KEY_SPACE and not event.is_echo():
+		#newGame()
 
 func newGame() -> void:
 	Score.scores.clear()
 	PlayerInfo.playerCount = 1
 	get_tree().change_scene_to_file("res://scenes/mainMenu/mainMenu.tscn")
+
+
+func exitGame() -> void:
+	get_tree().quit()
+	
+func playAgain() ->void:
+	Score.scores.clear()
+	Score.scores.append(0)
+	Score.scores.append(null)
+	PlayerInfo.playerCount = 1
+	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
