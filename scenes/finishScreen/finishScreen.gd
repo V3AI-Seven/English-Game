@@ -11,6 +11,10 @@ func _ready() -> void:
 	newHigh = false
 	$multiplayerFinish.visible = false
 	$singleplayerFinish.visible = false
+	if OnlineMultiplayer.isMultiplayer:
+		Score.scores.remove_at(2)
+		Score.scores.remove_at(3)
+		Score.scores.remove_at(4)
 	if PlayerInfo.isModeMultiplayer:
 		$multiplayerFinish.visible = true
 		for val in Score.scores:

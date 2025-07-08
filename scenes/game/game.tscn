@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dw266gma3mjjn"]
+[gd_scene load_steps=15 format=3 uid="uid://dw266gma3mjjn"]
 
 [ext_resource type="Script" uid="uid://b73n6emuhbmum" path="res://scenes/game/mainGameScripts/pickPocketBar.gd" id="1_bdhmt"]
 [ext_resource type="Script" uid="uid://dhqnselwcym6d" path="res://scenes/game/mainGameScripts/success.gd" id="2_87uf6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://uwys6k3vgx3s" path="res://scenes/game/mainGameScripts/speedTracker.gd" id="6_5jirj"]
 [ext_resource type="Script" uid="uid://bsrseo8uvrw7r" path="res://scenes/game/otherGameScripts/failScreen.gd" id="7_vaxfo"]
 [ext_resource type="Script" uid="uid://lgsufbjn7dex" path="res://scenes/game/otherGameScripts/difficultyScreen.gd" id="8_87uf6"]
+[ext_resource type="Script" uid="uid://b3n6d0qihy5ek" path="res://scenes/game/waiting.gd" id="9_2a8rs"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_q7vxk"]
 
@@ -52,16 +53,6 @@ position = Vector2(0, 32)
 scale = Vector2(0.0106667, 0.0106667)
 texture = ExtResource("5_kp23o")
 offset = Vector2(200, 0)
-
-[node name="waiting" type="Label" parent="selector"]
-visible = false
-offset_left = -248.0
-offset_top = 128.0
-offset_right = 248.0
-offset_bottom = 170.0
-theme_override_font_sizes/font_size = 30
-text = "Waiting for other player to finish"
-horizontal_alignment = 1
 
 [node name="gameCam" type="Camera2D" parent="."]
 
@@ -174,6 +165,17 @@ offset_right = 72.0
 offset_bottom = -32.0
 text = "Hard"
 
+[node name="waiting" type="Label" parent="."]
+visible = false
+offset_left = -248.0
+offset_top = 128.0
+offset_right = 248.0
+offset_bottom = 170.0
+theme_override_font_sizes/font_size = 30
+text = "Waiting for other player to finish"
+horizontal_alignment = 1
+script = ExtResource("9_2a8rs")
+
 [connection signal="successPositionSig" from="pickPocketBar" to="selector" method="successPositionRecieved"]
 [connection signal="difficulty" from="selector" to="difficultyScreen" method="showDifficulty"]
 [connection signal="failSig" from="selector" to="failScreen" method="playerFail"]
@@ -182,6 +184,7 @@ text = "Hard"
 [connection signal="resetSig" from="selector" to="failScreen" method="playerReset"]
 [connection signal="speedChange" from="selector" to="speedTracker" method="speedChange"]
 [connection signal="successSig" from="selector" to="pickPocketBar" method="successReset"]
+[connection signal="waiting" from="selector" to="waiting" method="waitingToggle"]
 [connection signal="difficultyChosen" from="difficultyScreen" to="selector" method="difficultyChosen"]
 [connection signal="pressed" from="difficultyScreen/buttons/easy" to="difficultyScreen" method="easy"]
 [connection signal="pressed" from="difficultyScreen/buttons/medium" to="difficultyScreen" method="medium"]
